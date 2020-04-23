@@ -128,7 +128,7 @@ def table(devices):
         html.Thead(html.Tr([html.Th('stamp'),html.Th('devId'),html.Th('sun angle') ,html.Th('tracker angle')#, html.Th('motor status') ,
          ]))]
     table_body=[
-        html.Tbody(html.Tr([html.Td(dev[1]),html.Td(dev[2]),html.Td(dev[3]),html.Td(dev[4])]))for dev in devices]
+        html.Tbody(html.Tr([html.Td(dev.id),html.Td(dev.stamp),html.Td(dev.SPA]),html.Td(devTA)]))for dev in devices]
     table=dbc.Table(table_header+table_body,bordered=True,striped=True,hover=True,style={"backgroundColor":"white"})
     return table
 dropdowns=html.Div([
