@@ -11,7 +11,7 @@ import time
 import pandas as pd
 import sqlite3
 import os
-from datetime import datetime
+from datetime import datetime,timedelta
 FA ="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 
 server = Flask(__name__)
@@ -59,7 +59,7 @@ def on_message(client, userdata, message):
     payload = str(message.payload.decode("utf-8"))
     print("payload=",payload)
     data = dict(x.split(": ") for x in payload.split(" , "))
-    admin = User(stamp=str(datetime.now()),devId=data['devId'],SPA=data['SPA'],TA=data['TA'])
+    admin = User(stamp=str(datetime.now()+timedelta(minutes=330)),devId=data['devId'],SPA=data['SPA'],TA=data['TA'])
     db.session.add(admin)
     db.session.commit()
 client = mqtt.Client()
