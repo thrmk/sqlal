@@ -1,1 +1,1 @@
-web: gunicorn sqlal:server
+web: gunicorn latest:server
