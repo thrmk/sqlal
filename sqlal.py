@@ -84,6 +84,8 @@ client.loop_start()
 client.subscribe(subtop)
 client.loop()
 
+#buttons=html.Div([html.Button('longitude', id='button1'),html.Button('latitude', id='button2'),html.Button('rtc', id='button3'),html.Button('sun', id='button4')])
+
 graph=html.Div([
     dcc.Dropdown(
         id='devices',
@@ -125,8 +127,84 @@ def table(devices):
         html.Tbody(html.Tr([html.Td(dev[1]),html.Td(dev[2]),html.Td(dev[3]),html.Td(dev[4])]))for dev in devices]
     table=dbc.Table(table_header+table_body,bordered=True,striped=True,hover=True,style={"backgroundColor":"white"})
     return table
+dropdowns=html.Div([
+    html.H4('You can read the data using these dropdown buttons'),
+    dcc.Dropdown(
+        id='devices1',
+        options=[
+            {'label': 'R1', 'value': 'R1'},
+            {'label': 'G2', 'value': 'G2'},
+            {'label': 'R2', 'value': 'R2'}
+        ],
+        value='', style={"width":"auto"}),
+    dcc.Dropdown(
+        id='options1',
+        options=[
+            {'label': 'GETALL', 'value': 'GETALL'},
+            {'label': 'LAT', 'value': 'LAT'},
+            {'label': 'LONGITUDE', 'value': 'LONGITUDE'},
+            {'label': 'RTC', 'value': 'RTC'},
+            {'label': 'SUN', 'value': 'SUN'},
+            {'label': 'TRACKER', 'value': 'TRACKER'},
+            {'label': 'ZONE', 'value': 'ZONE'},
+            {'label': 'MODE', 'value': 'MODE'},
+            {'label': 'HR', 'value': 'HR'},
+            {'label': 'MIN', 'value': 'MIN'},
+            {'label': 'SEC', 'value': 'SEC'},
+            {'label': 'DATE', 'value': 'DATE'},
+            {'label': 'MONTH', 'value': 'MONTH'},
+            {'label': 'YEAR', 'value': 'YEAR'},
 
-app.layout = html.Div([data1,graph,dcc.Location(id="url",refresh=True)])
+        ],
+        value='', style={"width":"auto"}),
+    #inline=True,
+    dbc.Button("Read", id="buttons1"),
+
+html.Div(id='display')
+])
+
+select=html.Div([
+    html.H4('Using these you can write the commands for setting the values in the device'),
+    dcc.Dropdown(
+        id='device',
+        options=[
+            {'label': 'R1 ', 'value': 'R1'},
+            {'label': 'G2 ', 'value': 'G2'},
+            {'label': 'R2 ', 'value': 'R2'}
+        ],
+        value='',style={"width":"auto"}
+    ),
+    #html.H4(''),
+    dcc.Dropdown(
+        id='options',
+        options=[
+            {'label': 'LAT', 'value': 'LAT'},
+            {'label': 'LONGITUDE', 'value': 'LONGITUDE'},
+            {'label': 'SEC', 'value': 'SEC'},
+            {'label': 'MIN', 'value': 'MIN'},
+                        {'label': 'HOUR', 'value': 'HR'},
+            {'label': 'DATE', 'value': 'DATE'},
+            {'label': 'MONTH', 'value': 'MONTH'},
+            {'label': 'YEAR', 'value': 'YEAR'},
+            {'label': 'EAST', 'value': 'EAST'},
+            {'label': 'WEST', 'value': 'WEST'},
+            {'label': 'TIMEZONE', 'value': 'TIMEZONE'},
+            {'label': 'REVLIMIT', 'value': 'REVLIMIT'},
+            {'label': 'FWDLIMIT', 'value': 'FWDLIMIT'},
+            {'label': 'AUTOMODE', 'value': 'AUTOMODE'},
+            {'label': 'MANUALMODE', 'value': 'MANUALMODE'},
+        ],
+        value='',style={"width":"auto"}
+    ),
+  dcc.Input(id="input2", type="text"),# placeholder="", debounce=True),
+        html.Div(id="output"),
+        dbc.Button("Write", id="write button"),
+        ],#, className="mr-2")
+)
+
+
+
+app.layout = html.Div([dropdowns,select,data1,graph,dcc.Location(id="url",refresh=True)])
 
 @app.callback(
     Output('graph-with-slider', 'figure'),
