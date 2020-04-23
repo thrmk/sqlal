@@ -125,10 +125,10 @@ def table(devices):
     print("table devices=",devices)
     #reading=reading+1
     table_header=[
-        html.Thead(html.Tr([html.Th('stamp'),html.Th('devId'),html.Th('sun angle') ,html.Th('tracker angle')#, html.Th('motor status') ,
+        html.Thead(html.Tr([html.Th('Id'),html.Th('stamp'),html.Th('devId'),html.Th('sun angle') ,html.Th('tracker angle')#, html.Th('motor status') ,
          ]))]
     table_body=[
-        html.Tbody(html.Tr([html.Td(dev[1]),html.Td(dev[2]),html.Td(dev[3]),html.Td(dev[4])]))for dev in devices]
+        html.Tbody(html.Tr([html.Td(dev[0]),html.Td(dev[1]),html.Td(dev[2]),html.Td(dev[3]),html.Td(dev[4])]))for dev in devices]
     table=dbc.Table(table_header+table_body,bordered=True,striped=True,hover=True,style={"backgroundColor":"white"})
     return table
 dropdowns=html.Div([
@@ -267,12 +267,12 @@ def update_figure(selected_device):
               [Input("live-update-text", "className")])
 def update_output_div(input_value):
     #cursor.execute("SELECT * FROM data")
-    connection2 = sqlite3.connect('test.db')#,check_same_thread=False)
+    #connection2 = sqlite3.connect('test.db')#,check_same_thread=False)
     #df=pd.read_sql("select * from datatable",connection2)
-    cursor=connection2.cursor()
-    cursor.execute("SELECT * FROM datatable")
-
-    rows = cursor.fetchall()
+    #cursor=connection2.cursor()
+    #cursor.execute("SELECT * FROM datatable")
+    rows = User.query.all()
+    #rows = cursor.fetchall()
     print("rows=",rows)
 
     for row in rows:
