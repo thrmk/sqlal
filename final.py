@@ -25,7 +25,7 @@ db = SQLAlchemy(server)
 
 #db_URI = os.environ.get('DATABASE_URL', 'sqlite:///test.db')
 #engine = create_engine(db_URI)
-engine = create_engine('sqlite:///test.db')
+#engine = create_engine('sqlite:///test.db')
 
 class User(db.Model):
     __tablename__ = 'datatable'
@@ -214,8 +214,8 @@ app.layout = html.Div([dropdowns,select,data1,graph,dcc.Location(id="url",refres
     Output('graph-with-slider', 'figure'),
     [Input('devices', 'value')])#,Input('interval-component', 'n_intervals')])
 def update_figure(selected_device):
-    #connection1 = sqlite3.connect('test.db')#,check_same_thread=False)
-    df=pd.read_sql("select * from datatable",engine)#connection1)
+    connection1 = sqlite3.connect('test.db')#,check_same_thread=False)
+    df=pd.read_sql("select * from datatable",connection1)
 
     filtered_df = df[df.devId == selected_device]
     print("filtered df=",filtered_df)
