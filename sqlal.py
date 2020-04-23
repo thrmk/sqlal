@@ -10,12 +10,15 @@ import paho.mqtt.client as mqtt
 import time
 import pandas as pd
 import sqlite3
-
+import os
 from datetime import datetime
 FA ="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 
 server = Flask(__name__)
-server.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+server.config['DEBUG'] = True
+server.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///test.db')
+
+#server.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 server.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(server)
 
@@ -72,11 +75,11 @@ subtop="tracker/device/sub"
 pubtop="tracker/device/pub"
 #link=""
 #if link!="":
-client.connect("ec2-35-162-194-10.us-west-2.compute.amazonaws.com",1883)
+#client.connect("ec2-35-162-194-10.us-west-2.compute.amazonaws.com",1883)
 #client.connect("env-5116852.gpuoncloud.in",11002)
 #client.connect("iot.smarttrak.info",1883)
-#client.username_pw_set("cbocdpsu", "3_UFu7oaad-8")
-#client.connect('soldier.cloudmqtt.com', 14035,60)
+client.username_pw_set("cbocdpsu", "3_UFu7oaad-8")
+client.connect('soldier.cloudmqtt.com', 14035,60)
 client.loop_start()
 client.subscribe(subtop)
 client.loop()
