@@ -1,1 +1,1 @@
-web: gunicorn bag:server
+web: gunicorn man:server
