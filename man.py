@@ -233,7 +233,7 @@ def on_message(client, userdata, message):
     #elif ((len(payload)>37) and (len(payload)!=45)):
    #     print("hi dict")
   #      print(len(smbdict))
-        if len(smbdict)==0:
+        if (('str1' not in smbdict) and ('str1' in data)):
             smbdict.update(data)
     #        print(len(smbdict))
         #else:# len(smbdict)==4
