@@ -248,7 +248,7 @@ def on_message(client, userdata, message):
             smbdict['str3']=data['str3']
             smbdict['vol3']=data['vol3']
         #elif 'str4' not in smbdict:
-        elif (('str4' not in smbdict) and ('str4' in data)):
+        elif (('str4' not in smbdict) and ('str4' in data)): 
        #     print("str4")
             smbdict['str4']=data['str4']
             smbdict['vol4']=data['vol4']
