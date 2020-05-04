@@ -1,1 +1,1 @@
-web: gunicorn man:server
+web: gunicorn phone:server
