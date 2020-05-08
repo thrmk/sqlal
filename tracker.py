@@ -908,4 +908,4 @@ def display_page(pathname):
         
 
 if __name__ == '__main__':
-    app.run_server(debug=True,threaded=True, use_reloader=True)
+    app.run_server(debug=True,threaded=False, use_reloader=False)
