@@ -829,7 +829,7 @@ def update_figure(selected_device,start,end):
     filtered_df = filtered_d.loc[(filtered_d['stamp'] > start) & (filtered_d['stamp'] <= end)]
     print("filtered df=",filtered_df)
     client.publish(pubtop,"{} READ:GETALL".format(selected_device))
-    return {'data': [{'x': filtered_df.stamp, 'y':filtered_df.SPA, 'name': 'SPA','type': 'bar','bgcolor': 'rgba(255, 255, 255, 0.5)'},
+    return {'data': [{'x': filtered_df.stamp, 'y':filtered_df.SPA, 'name': 'SPA','type': 'scatter','bgcolor': 'rgba(50, 255, 255, 0.5)'},
         {'x': filtered_df.stamp, 'y':filtered_df.TA, 'name': 'TA'}, ],
             'layout': {
                 'title': '(SPA and TA)  vs Time'
