@@ -1,1 +1,1 @@
-web: gunicorn tracker:server
+web: gunicorn wire:server
