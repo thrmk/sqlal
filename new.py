@@ -285,7 +285,7 @@ client.subscribe(subtop)
 client.loop()
 #/*------------------------------------------------------------------------------------------------------------------*/
 
-app = dash.Dash(__name__,server=server, meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1"}])
+app = dash.Dash(__name__,server=server, meta_tags=[{"name": "viewport", "content": "width=device-width"}])
 
 #/*------------------------------------------------------------------------------------------------------------------*/
 
