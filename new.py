@@ -285,7 +285,8 @@ client.subscribe(subtop)
 client.loop()
 #/*------------------------------------------------------------------------------------------------------------------*/
 
-app = dash.Dash(__name__,server=server, meta_tags=[{"name": "viewport", "content": "width=device-width"}])
+app = dash.Dash(__name__,server=server, meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1"}])
+#app = dash.Dash(__name__,server=server,external_stylesheets=[dbc.themes.BOOTSTRAP, FA], meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1"}])
 
 #/*------------------------------------------------------------------------------------------------------------------*/
 
@@ -323,7 +324,7 @@ banner = html.Div(id ="banner",className ="banner",
             html.Img(src=app.get_asset_url("smarttrack.png"), height="50px")]),
                 html.Div(id="banner-text",
                     children=[
-                        html.H5("SMARTTRAK DASHBOARD",style={"font-family": 'Open Sans Semi Bold',"font-weight": "500","line-height": "1.2","font-size": "3rem","letter-spacing": "0.1rem","text-transform": "uppercase",'color':'white'})
+                        html.H5("SMARTTRAK DASHBOARD",style={"font-family": 'Open Sans Semi Bold',"font-weight": "auto","line-height": "1.2","font-size": "3rem","letter-spacing": "0.1rem","text-transform": "uppercase",'color':'white'})
                         ]
                     )
                 ],
