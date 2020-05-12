@@ -1,1 +1,1 @@
-web: gunicorn wire:server
+web: gunicorn new:server
